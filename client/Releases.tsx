@@ -13,6 +13,7 @@ export function Releases(props: Props) {
           <VStack
             key={release.id}
             p={4}
+            w="36rem"
             align="start"
             bg="gray.200"
             borderRadius={10}

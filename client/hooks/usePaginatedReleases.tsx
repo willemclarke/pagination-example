@@ -40,13 +40,26 @@ export function usePaginatedReleases() {
     setPage((prevPage) => Math.max(prevPage - 1, 0));
   }, [setPage]);
 
+  const getLastPage = React.useCallback(() => {
+    if (query.data?.pagination.totalPages) {
+      setPage((_) => query.data?.pagination.totalPages);
+    }
+  }, [setPage, query.data?.pagination.totalPages]);
+
+  const getFirstPage = React.useCallback(() => {
+    setPage(1);
+  }, [setPage]);
+
   return {
     ...query,
     pagination: {
       ...query.data?.pagination,
       getNextPage,
       getPreviousPage,
+      getFirstPage,
+      getLastPage,
       isPreviousDisbaled: page === 1,
+      isLastPageDisbaled: page === query.data?.pagination.totalPages,
       isNextPageDisabled:
         query.isPreviousData || !query.data?.pagination.hasNextPage,
     },
