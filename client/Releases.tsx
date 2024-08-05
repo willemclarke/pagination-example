@@ -1,4 +1,3 @@
-import React from "react";
 import { VStack, HStack, Text } from "@chakra-ui/react";
 import { Release } from "../server";
 
@@ -8,7 +7,7 @@ interface Props {
 
 export function Releases(props: Props) {
   return (
-    <>
+    <VStack spacing={4}>
       {props.releases.map((release) => {
         return (
           <VStack
@@ -33,6 +32,6 @@ export function Releases(props: Props) {
           </VStack>
         );
       })}
-    </>
+    </VStack>
   );
 }
